@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MusicStoreModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MusicStoreModelStoreContainer">
+    <EntitySet Name="Artists" EntityType="MusicStoreModel.Store.Artists" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Songs" EntityType="MusicStoreModel.Store.Songs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="vwSongs" EntityType="MusicStoreModel.Store.vwSongs" store:Type="Views" store:Schema="dbo" store:Name="vwSongs">
+      <DefiningQuery>SELECT 
+      [vwSongs].[Name] AS [Name], 
+      [vwSongs].[SongID] AS [SongID], 
+      [vwSongs].[ArtistID] AS [ArtistID], 
+      [vwSongs].[Title] AS [Title], 
+      [vwSongs].[YearReleased] AS [YearReleased], 
+      [vwSongs].[Enable] AS [Enable]
+      FROM [dbo].[vwSongs] AS [vwSongs]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Songs_Artists" Association="MusicStoreModel.Store.FK_Songs_Artists">
+      <End Role="Artists" EntitySet="Artists" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Artists">
+    <Key>
+      <PropertyRef Name="ArtistID" />
+    </Key>
+    <Property Name="ArtistID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Classification" Type="varchar" MaxLength="50" />
+    <Property Name="Enable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Songs">
+    <Key>
+      <PropertyRef Name="SongID" />
+    </Key>
+    <Property Name="SongID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArtistID" Type="bigint" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="YearReleased" Type="int" />
+    <Property Name="Enable" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'MusicStore.dbo.vwSongs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="vwSongs">
+    <Key>
+      <PropertyRef Name="SongID" />
+      <PropertyRef Name="Enable" />
+    </Key>
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="SongID" Type="bigint" Nullable="false" />
+    <Property Name="ArtistID" Type="bigint" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="YearReleased" Type="int" />
+    <Property Name="Enable" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Songs_Artists">
+    <End Role="Artists" Type="MusicStoreModel.Store.Artists" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Songs" Type="MusicStoreModel.Store.Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artists">
+        <PropertyRef Name="ArtistID" />
+      </Principal>
+      <Dependent Role="Songs">
+        <PropertyRef Name="ArtistID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

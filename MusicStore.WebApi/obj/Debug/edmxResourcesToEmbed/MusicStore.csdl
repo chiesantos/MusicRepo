@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MusicStoreModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MusicStoreContext" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Songs" EntityType="MusicStoreModel.Songs" />
+    <EntitySet Name="Artists" EntityType="MusicStoreModel.Artists" />
+    <AssociationSet Name="FK_Songs_Artists" Association="MusicStoreModel.FK_Songs_Artists">
+      <End Role="Artists" EntitySet="Artists" />
+      <End Role="Songs" EntitySet="Songs" />
+    </AssociationSet>
+    <EntitySet Name="vwSongs" EntityType="MusicStoreModel.vwSongs" />
+  </EntityContainer>
+  <EntityType Name="Songs">
+    <Key>
+      <PropertyRef Name="SongID" />
+    </Key>
+    <Property Name="SongID" Type="Int64" Nullable="false" />
+    <Property Name="ArtistID" Type="Int64" />
+    <Property Name="Title" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="YearReleased" Type="Int32" />
+    <Property Name="Enable" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Artists" Relationship="MusicStoreModel.FK_Songs_Artists" FromRole="Songs" ToRole="Artists" />
+  </EntityType>
+  <EntityType Name="Artists">
+    <Key>
+      <PropertyRef Name="ArtistID" />
+    </Key>
+    <Property Type="Int64" Name="ArtistID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Classification" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="Enable" Nullable="false" />
+    <NavigationProperty Name="Songs" Relationship="MusicStoreModel.FK_Songs_Artists" FromRole="Artists" ToRole="Songs" />
+  </EntityType>
+  <Association Name="FK_Songs_Artists">
+    <End Type="MusicStoreModel.Artists" Role="Artists" Multiplicity="0..1" />
+    <End Type="MusicStoreModel.Songs" Role="Songs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artists">
+        <PropertyRef Name="ArtistID" />
+      </Principal>
+      <Dependent Role="Songs">
+        <PropertyRef Name="ArtistID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vwSongs">
+    <Key>
+      <PropertyRef Name="SongID" />
+      <PropertyRef Name="Enable" />
+    </Key>
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="SongID" Nullable="false" />
+    <Property Type="Int64" Name="ArtistID" />
+    <Property Type="String" Name="Title" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="YearReleased" />
+    <Property Type="Boolean" Name="Enable" Nullable="false" />
+  </EntityType>
+</Schema>

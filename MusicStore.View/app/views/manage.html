@@ -1,0 +1,18 @@
+﻿<h3>Music Store</h3>
+  <ul class="nav nav-tabs" ng-init="initialize()" ng-controller="ManageController">
+    <li><a href="#/home">Home</a></li>
+    <li><a href="#/lists">Lists</a></li>
+    <li class="active"><a href="#/manage">Manage</a></li>
+    <li><a href="#/reports">Reports</a></li>
+  </ul>
+  <br>
+
+<div>
+    Show page to manage:
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary" ng-click="actions.includePage(0)">Artist</button>
+      <button type="button" class="btn btn-primary" ng-click="actions.includePage(1)">Songs</button>
+    </div>
+</div>
+<hr />
+<div ng-include="path"></div>

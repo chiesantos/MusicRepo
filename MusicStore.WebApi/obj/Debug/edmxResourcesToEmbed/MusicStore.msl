@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MusicStoreModelStoreContainer" CdmEntityContainer="MusicStoreContext">
+    <EntitySetMapping Name="Songs">
+      <EntityTypeMapping TypeName="MusicStoreModel.Songs">
+        <MappingFragment StoreEntitySet="Songs">
+          <ScalarProperty Name="SongID" ColumnName="SongID" />
+          <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="YearReleased" ColumnName="YearReleased" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Artists">
+      <EntityTypeMapping TypeName="MusicStoreModel.Artists">
+        <MappingFragment StoreEntitySet="Artists">
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Classification" ColumnName="Classification" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwSongs">
+      <EntityTypeMapping TypeName="MusicStoreModel.vwSongs">
+        <MappingFragment StoreEntitySet="vwSongs">
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="YearReleased" ColumnName="YearReleased" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+          <ScalarProperty Name="SongID" ColumnName="SongID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

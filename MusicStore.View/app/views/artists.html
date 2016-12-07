@@ -1,0 +1,61 @@
+﻿<div ng-controller="ArtistController" ng-init="initialize()">
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="actions.showAddFields()">Add</button>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Classification</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <tr ng-repeat="item in artistList">
+            <td>{{item.ArtistID}}</td>
+            <td>{{item.Name}}</td>
+            <td>{{item.Classification}}</td>
+            <td>{{item.Enable == 1 ? 'Active' : 'Inactive'}}</td>
+            <td>
+                 <span class="glyphicon glyphicon-edit" style="margin-right: 15px; cursor: pointer;" title="Edit" ng-click="actions.editMode(item.ArtistID)" data-toggle="modal" data-target="#myModal"></span>
+             </td>
+        </tr>
+    </table>
+
+    <!-- Modal: Songs related to the selected artist -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        {{isEditMode == true ? 'Edit artist' : 'Add artist'}}
+                    </h4>
+                    <div id="successAlert" class = "alert alert-success">Artist Added!</div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3">* Name:</div>
+                        <div class="col-sm-9">
+                            <p><input type="text" ng-model="artistDTO.Name" /></p>
+                        </div>
+                        <div class="col-sm-3">Classification:</div>
+                        <div class="col-sm-9">
+                            <p><select ng-model="artistDTO.Classification" ng-options="classOpt.value as classOpt.enum for classOpt in [{ enum: 'Solo', value: 'Solo' }, { enum: 'Duo', value: 'Duo' }, { value: 'Group', value: 'Group' }]"></select></p>
+                            
+                        </div>
+                        <div class="col-sm-3">Status:</div>
+                        <div class="col-sm-9">
+                            <p><select ng-model="artistDTO.Enable" ng-options="opt.value as opt.enum for opt in [{ enum: 'Active', value: true }, { enum: 'Inactive', value: false }]"></select></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="actions.submit()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

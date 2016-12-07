@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MusicStoreModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="MusicStoreModelStoreContainer">
+          <EntitySet Name="Artists" EntityType="MusicStoreModel.Store.Artists" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Songs" EntityType="MusicStoreModel.Store.Songs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vwSongs" EntityType="MusicStoreModel.Store.vwSongs" store:Type="Views" store:Schema="dbo" store:Name="vwSongs">
+            <DefiningQuery>SELECT 
+      [vwSongs].[Name] AS [Name], 
+      [vwSongs].[SongID] AS [SongID], 
+      [vwSongs].[ArtistID] AS [ArtistID], 
+      [vwSongs].[Title] AS [Title], 
+      [vwSongs].[YearReleased] AS [YearReleased], 
+      [vwSongs].[Enable] AS [Enable]
+      FROM [dbo].[vwSongs] AS [vwSongs]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Songs_Artists" Association="MusicStoreModel.Store.FK_Songs_Artists">
+            <End Role="Artists" EntitySet="Artists" />
+            <End Role="Songs" EntitySet="Songs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Artists">
+          <Key>
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Name="ArtistID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Classification" Type="varchar" MaxLength="50" />
+          <Property Name="Enable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Songs">
+          <Key>
+            <PropertyRef Name="SongID" />
+          </Key>
+          <Property Name="SongID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArtistID" Type="bigint" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="YearReleased" Type="int" />
+          <Property Name="Enable" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'MusicStore.dbo.vwSongs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vwSongs">
+          <Key>
+            <PropertyRef Name="SongID" />
+            <PropertyRef Name="Enable" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="SongID" Type="bigint" Nullable="false" />
+          <Property Name="ArtistID" Type="bigint" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="YearReleased" Type="int" />
+          <Property Name="Enable" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Songs_Artists">
+          <End Role="Artists" Type="MusicStoreModel.Store.Artists" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Songs" Type="MusicStoreModel.Store.Songs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artists">
+              <PropertyRef Name="ArtistID" />
+            </Principal>
+            <Dependent Role="Songs">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MusicStoreModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MusicStoreContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Songs" EntityType="MusicStoreModel.Songs" />
+          <EntitySet Name="Artists" EntityType="MusicStoreModel.Artists" />
+          <AssociationSet Name="FK_Songs_Artists" Association="MusicStoreModel.FK_Songs_Artists">
+            <End Role="Artists" EntitySet="Artists" />
+            <End Role="Songs" EntitySet="Songs" />
+          </AssociationSet>
+          <EntitySet Name="vwSongs" EntityType="MusicStoreModel.vwSongs" />
+        </EntityContainer>
+        <EntityType Name="Songs">
+          <Key>
+            <PropertyRef Name="SongID" />
+          </Key>
+          <Property Name="SongID" Type="Int64" Nullable="false" />
+          <Property Name="ArtistID" Type="Int64" />
+          <Property Name="Title" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="YearReleased" Type="Int32" />
+          <Property Name="Enable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Artists" Relationship="MusicStoreModel.FK_Songs_Artists" FromRole="Songs" ToRole="Artists" />
+        </EntityType>
+        <EntityType Name="Artists">
+          <Key>
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Type="Int64" Name="ArtistID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Classification" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Enable" Nullable="false" />
+          <NavigationProperty Name="Songs" Relationship="MusicStoreModel.FK_Songs_Artists" FromRole="Artists" ToRole="Songs" />
+        </EntityType>
+        <Association Name="FK_Songs_Artists">
+          <End Type="MusicStoreModel.Artists" Role="Artists" Multiplicity="0..1" />
+          <End Type="MusicStoreModel.Songs" Role="Songs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artists">
+              <PropertyRef Name="ArtistID" />
+            </Principal>
+            <Dependent Role="Songs">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vwSongs">
+          <Key>
+            <PropertyRef Name="SongID" />
+            <PropertyRef Name="Enable" />
+          </Key>
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="SongID" Nullable="false" />
+          <Property Type="Int64" Name="ArtistID" />
+          <Property Type="String" Name="Title" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="YearReleased" />
+          <Property Type="Boolean" Name="Enable" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MusicStoreModelStoreContainer" CdmEntityContainer="MusicStoreContext">
+          <EntitySetMapping Name="Songs">
+            <EntityTypeMapping TypeName="MusicStoreModel.Songs">
+              <MappingFragment StoreEntitySet="Songs">
+                <ScalarProperty Name="SongID" ColumnName="SongID" />
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="YearReleased" ColumnName="YearReleased" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artists">
+            <EntityTypeMapping TypeName="MusicStoreModel.Artists">
+              <MappingFragment StoreEntitySet="Artists">
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Classification" ColumnName="Classification" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSongs">
+            <EntityTypeMapping TypeName="MusicStoreModel.vwSongs">
+              <MappingFragment StoreEntitySet="vwSongs">
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="YearReleased" ColumnName="YearReleased" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="SongID" ColumnName="SongID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

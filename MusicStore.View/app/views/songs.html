@@ -1,0 +1,65 @@
+﻿<div ng-controller="SongController" ng-init="initialize()">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="actions.showAddFields()">Add</button>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Year Released</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <tr ng-repeat="item in songList">
+            <td>{{item.SongID}}</td>
+            <td>{{item.Title}}</td>
+            <td>{{item.Name}}</td>
+            <td>{{item.YearReleased}}</td>
+            <td>{{item.Enable == 1 ? 'Active' : 'Inactive'}}</td>
+            <td>
+                 <span class="glyphicon glyphicon-edit" style="margin-right: 15px; cursor: pointer;" title="Edit" ng-click="actions.editMode(item.SongID)" data-toggle="modal" data-target="#myModal"></span>
+             </td>
+        </tr>
+    </table>
+
+    <!-- Modal: Songs related to the selected artist -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        {{isEditMode == true ? 'Edit song' : 'Add song'}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3">Title:</div>
+                        <div class="col-sm-9">
+                            <p><input type="text" ng-model="songDTO.Title" /></p>
+                        </div>
+
+                        <div class="col-sm-3">Artist:</div>
+                        <div class="col-sm-9">
+                            <p><select ng-model="songDTO.ArtistID" ng-options="a.ArtistID as a.Name for a in artists"></select></p>
+                        </div>
+
+                        <div class="col-sm-3">Year Released:</div>
+                        <div class="col-sm-9">
+                            <p><input type="number" ng-model="songDTO.YearReleased" /></p>
+                        </div>
+                        <div class="col-sm-3">Status:</div>
+                        <div class="col-sm-9">
+                            <p><select ng-model="songDTO.Enable" ng-options="o.v as o.n for o in [{ n: 'Active', v: true }, { n: 'Inactive', v: false }]"></select></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="actions.submit()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
