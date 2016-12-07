@@ -30,6 +30,17 @@ namespace MusicStore.WebApi.Controllers
         }
 
         [HttpGet]
+        public List<ArtistDTO> GetAllEnabled()
+        {
+            using (MusicStoreContext db = new MusicStoreContext())
+            {
+                List<Artists> records = new List<Artists>();
+                records = db.Artists.Where(x => x.Enable == true).ToList();
+                return _mapper.Map<List<ArtistDTO>>(records);
+            }
+        }
+
+        [HttpGet]
         public ArtistDTO GetById(long id)
         {
             using (MusicStoreContext db = new MusicStoreContext())

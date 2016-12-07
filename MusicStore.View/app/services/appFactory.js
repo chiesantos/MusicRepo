@@ -26,6 +26,18 @@
         return q.promise;
     },
 
+    factory.getActiveArtists = function () {
+        var q = $q.defer();
+        $http.get(api + 'Artist/GetAllEnabled')
+        .success(function (data) {
+            q.resolve(data);
+        }).error(function (e) {
+            q.reject(e);
+        });
+
+        return q.promise;
+    },
+
     factory.getSongs = function () {
         var q = $q.defer();
         $http.get(api + 'Song/GetAll')

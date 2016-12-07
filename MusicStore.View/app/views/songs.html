@@ -33,15 +33,17 @@
                     <h4 class="modal-title">
                         {{isEditMode == true ? 'Edit song' : 'Add song'}}
                     </h4>
+                    <div id="success-alert" class = "alert alert-success">{{successPrompt}}</div>
+                    <div id="error-alert" class = "alert alert-danger">{{errorPrompt}}</div>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-sm-3">Title:</div>
+                        <div class="col-sm-3">* Title:</div>
                         <div class="col-sm-9">
                             <p><input type="text" ng-model="songDTO.Title" /></p>
                         </div>
 
-                        <div class="col-sm-3">Artist:</div>
+                        <div class="col-sm-3">* Artist:</div>
                         <div class="col-sm-9">
                             <p><select ng-model="songDTO.ArtistID" ng-options="a.ArtistID as a.Name for a in artists"></select></p>
                         </div>
@@ -57,7 +59,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="actions.submit()">Save</button>
+                    <button type="button" class="btn btn-success" ng-click="actions.submit()">Save</button>
                 </div>
             </div>
         </div>

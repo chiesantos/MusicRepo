@@ -46,7 +46,7 @@ namespace MusicStore.WebApi.Controllers
             using (MusicStoreContext db = new MusicStoreContext())
             {
                 List<Songs> records = new List<Songs>();
-                records = db.Songs.Where(x => x.ArtistID == id).ToList();
+                records = db.Songs.Where(x => x.ArtistID == id && x.Enable == true).ToList();
                 return _mapper.Map<List<SongDTO>>(records);
             }
         }

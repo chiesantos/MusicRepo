@@ -4,10 +4,14 @@
     $scope.artists = {};
     $scope.isAdding = false;
     $scope.isEditMode = false;
+    $scope.successPrompt = "";
+    $scope.errorPrompt = "";
 
     $scope.initialize = function () {
         $scope.actions.getAll();
         $scope.actions.getAllArtist();
+        $("#success-alert").hide();
+        $("#error-alert").hide();
     }
 
     $scope.actions = {
@@ -19,36 +23,50 @@
         },
 
         getAllArtist: function () {
-            var promise = appFactory.getArtists();
+            var promise = appFactory.getActiveArtists();
             promise.then(function (data) {
                 $scope.artists = data;
-                console.log(data);
             });
         },
 
         submit: function () {
-            if ($scope.isAdding) {
-                var promise = appFactory.createSong($scope.songDTO);
-                promise.then(function (data) {
-                    alert("Song Added!");
-                    $scope.actions.getAll();
-                    $scope.songDTO = {};
+            var validateResult = $scope.validate();
+            
+            if (validateResult != "") {
+                $scope.errorPrompt = "Please fill-out the required fields: " + validateResult;
 
-                });
+                // Validation prompt
+                $("#success-alert").hide();
+                $("#error-alert").alert();
+                $("#error-alert").fadeTo(2000, 500);
             } else {
-                var promise = appFactory.updateSong($scope.songDTO);
-                promise.then(function (data) {
-                    alert("Song Updated!");
-                    $scope.actions.getAll();
-                    $scope.songDTO = {};
+                if ($scope.isAdding) {
+                    var promise = appFactory.createSong($scope.songDTO);
+                    promise.then(function (data) {
+                        $scope.songDTO = {};
+                        $scope.actions.getAll();
+                        $scope.successPrompt = "Adding successful!";
+                    });
+                } else {
+                    var promise = appFactory.updateSong($scope.songDTO);
+                    promise.then(function (data) {
+                        $scope.actions.getAll();
+                        $scope.successPrompt = "Updating successful!";
+                    });
+                }
+
+                // Success alert
+                $scope.successPrompt = "Updating successful!";
+                $("#error-alert").hide();
+                $("#success-alert").alert();
+                $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+                    $("#success-alert").slideUp(500);
                 });
             }
-
-            $scope.actions.getAll();
-            $scope.songDTO = {};
         },
 
         showAddFields: function () {
+            $("#error-alert").hide();
             $scope.isAdding = true;
             $scope.isEditMode = false;
             $scope.songDTO = {};
@@ -59,8 +77,23 @@
                 $scope.songDTO = data;
             });
 
+            $("#error-alert").hide();
             $scope.isAdding = false;
             $scope.isEditMode = true;
         }
     };
+
+    $scope.validate = function () {
+        var errorMessage = "";
+
+        if ($scope.songDTO.Title == "" || $scope.songDTO.Title == undefined) {
+            errorMessage += "Song title ,";
+        }
+
+        if ($scope.songDTO.ArtistID == "" || $scope.songDTO.ArtistID == undefined) {
+            errorMessage += "Artist. "
+        }
+
+        return errorMessage;
+    }
 }]);

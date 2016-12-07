@@ -2,12 +2,14 @@
     $scope.artistList = {};
     $scope.artistDTO = {};
     $scope.errorPrompt = "";
+    $scope.successPrompt = "";
     $scope.isAdding = false;
     $scope.isEditMode = false;
 
     $scope.initialize = function () {
         $scope.actions.getAll();
-        //$("#successAlert").hide();
+        $("#success-alert").hide();
+        $("#error-alert").hide();
     }
 
     $scope.actions = {
@@ -23,34 +25,36 @@
 
             if (validateResult != "") {
                 $scope.errorPrompt = "Please fill-out the required fields: " + validateResult;
+                $("#success-alert").hide();
+                $("#error-alert").alert();
+                $("#error-alert").fadeTo(2000, 500);
             } else {
                 if ($scope.isAdding) {
                     var promise = appFactory.createArtist($scope.artistDTO);
                     promise.then(function (data) {
-                        
-                        $("#successAlert").alert();
-                            $("#successAlert").fadeTo(2000, 500).slideUp(500, function () {
-                                $("#successAlert").slideUp(500);
-                            });
-                        $scope.actions.getAll();
                         $scope.artistDTO = {};
-
+                        $scope.actions.getAll();
+                        $scope.successPrompt = "Adding successful!";
                     });
                 } else {
                     var promise = appFactory.updateArtist($scope.artistDTO);
                     promise.then(function (data) {
-                        alert("Artist Updated!");
+                        $scope.successPrompt = "Updating successful!";
                         $scope.actions.getAll();
-                        $scope.artistDTO = {};
                     });
                 }
 
-                $scope.actions.getAll();
-                $scope.artistDTO = {};
+                // Success alert
+                $("#error-alert").hide();
+                $("#success-alert").alert();
+                $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+                    $("#success-alert").slideUp(500);
+                });
             }
         },
 
         showAddFields: function () {
+            $("#error-alert").hide();
             $scope.isAdding = true;
             $scope.isEditMode = false;
             $scope.artistDTO = {};
@@ -61,6 +65,7 @@
                 $scope.artistDTO = data;
             });
 
+            $("#error-alert").hide();
             $scope.isAdding = false;
             $scope.isEditMode = true;
         }

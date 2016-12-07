@@ -36,3 +36,37 @@ C:\Users\Katherina Ann Santos\Documents\Visual Studio 2012\Projects\MusicStore\M
 C:\Users\Katherina Ann Santos\Documents\Visual Studio 2012\Projects\MusicStore\MusicStore.WebApi\obj\Debug\MusicStore.WebApi.csprojResolveAssemblyReference.cache
 C:\Users\Katherina Ann Santos\Documents\Visual Studio 2012\Projects\MusicStore\MusicStore.WebApi\obj\Debug\MusicStore.WebApi.dll
 C:\Users\Katherina Ann Santos\Documents\Visual Studio 2012\Projects\MusicStore\MusicStore.WebApi\obj\Debug\MusicStore.WebApi.pdb
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\MusicStore.WebApi.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\MusicStore.WebApi.pdb
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\EntityFramework.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\Newtonsoft.Json.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Net.Http.Formatting.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Cors.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Helpers.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Http.Cors.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Http.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Http.WebHost.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Mvc.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Razor.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.WebPages.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.WebPages.Razor.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\Autofac.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\Autofac.Integration.WebApi.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\AutoMapper.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\EntityFramework.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Net.Http.Formatting.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Http.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Http.Cors.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Http.WebHost.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Helpers.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Mvc.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.Razor.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.WebPages.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\bin\System.Web.WebPages.Razor.xml
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\obj\Debug\MusicStore.WebApi.csprojResolveAssemblyReference.cache
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\obj\Debug\MusicStore.WebApi.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.WebApi\obj\Debug\MusicStore.WebApi.pdb

@@ -1,0 +1,7 @@
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\MusicStore.View.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\MusicStore.View.pdb
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\obj\Debug\MusicStore.View.csprojResolveAssemblyReference.cache
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\obj\Debug\RdlCompile.cache
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\obj\Debug\RdlCompile.compiled
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\obj\Debug\MusicStore.View.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\obj\Debug\MusicStore.View.pdb

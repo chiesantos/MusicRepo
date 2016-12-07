@@ -6,11 +6,13 @@
 
     $scope.initialize = function () {
         $scope.actions.get();
+        $("#success-alert").hide();
+        $("#modal-success-alert").hide();
     };
 
     $scope.actions = {
         get: function () {
-            var promise = appFactory.getArtists();
+            var promise = appFactory.getActiveArtists();
             promise.then(function (data) {
                 $scope.artists = data;
                 console.log($scope.artists);
@@ -18,6 +20,7 @@
         },
 
         getSongsByArtist: function (id) {
+            $scope.globalChosenArtist = id;
             var promise = appFactory.getSongsByArtistId(id);
             promise.then(function (data) {
                 $scope.songsByArtist = data;
@@ -31,8 +34,11 @@
                 $scope.artistDTO.Enable = false;
 
                 appFactory.deleteArtist($scope.artistDTO).then(function (data) {
-                    alert("Deleted");
-                    this.get();
+                    $("#success-alert").alert();
+                    $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+                        $("#success-alert").slideUp(500);
+                    });
+                    $scope.actions.get();
                 });
             });
         },
@@ -42,8 +48,12 @@
                 $scope.songDTO = data;
                 $scope.songDTO.Enable = false;
 
-                appFactory.updateSong($scope.songDTO).then(function (data) {
-                    $scope.actions.getSongsByArtist(2);
+                appFactory.deleteSong($scope.songDTO).then(function (data) {
+                    $("#modal-success-alert").alert();
+                    $("#modal-success-alert").fadeTo(2000, 500).slideUp(500, function () {
+                        $("#modal-success-alert").slideUp(500);
+                    });
+                    $scope.actions.getSongsByArtist($scope.globalChosenArtist);
                 });
             });
         }
