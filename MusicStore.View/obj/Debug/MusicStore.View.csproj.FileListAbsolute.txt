@@ -5,3 +5,14 @@ C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\obj\Debug\RdlCompile.cac
 C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\obj\Debug\RdlCompile.compiled
 C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\obj\Debug\MusicStore.View.dll
 C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\obj\Debug\MusicStore.View.pdb
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\Microsoft.ReportViewer.WebForms.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\Katherina Ann Santos\MusicRepo\MusicStore.View\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
